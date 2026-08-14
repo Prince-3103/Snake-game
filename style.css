@@ -14,6 +14,7 @@ html, body{
     --bg-primary-color: #0c0c0c;
     --bg-secondary-color: #1a1a1a;
     --bg-active-color: #e3e3e3;
+    --bg-filled-color: #f1f0f0;
 
     /* Text-colors */
     --text-primary-color: #f3f3f3;
@@ -72,12 +73,84 @@ section .board{
     border: 1px solid var(--border-primary-color);
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(30px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
 }
 
 .block{
-    width: 30px;
-    height: 30px;
+    /* width: 30px;
+    height: 30px; */
     border: 1px solid var(--border-primary-color);
+}
+
+.filled{
+    background-color: var(--bg-filled-color);
+}
+
+.game-over{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: none;
+}
+
+.game-over-card{
+    width: min(90%, 450px);
+    padding: 40px;
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.game-over-card h1{
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+.score-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.score{
+    padding: 20px 10px;
+    background-color: #292929;
+    border-radius: 12px;
+}
+
+.score p{
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.score span{
+    display: block;
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+#restart-btn{
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #111;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#restart-btn:hover{
+    transform: scale(1.05);
 }
