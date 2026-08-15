@@ -15,6 +15,7 @@ html, body{
     --bg-secondary-color: #1a1a1a;
     --bg-active-color: #e3e3e3;
     --bg-filled-color: #f1f0f0;
+    --bg-food-color: #ff0000;
 
     /* Text-colors */
     --text-primary-color: #f3f3f3;
@@ -185,4 +186,8 @@ section .board{
 
 #restart-btn:hover{
     transform: scale(1.05);
+}
+
+.food{
+    background-color: var(--bg-food-color);
 }
