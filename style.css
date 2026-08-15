@@ -61,6 +61,7 @@ section .infos{
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .infos .info{
@@ -75,6 +76,37 @@ section .board{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+}
+
+.score-infos{
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+#start-btn{
+    padding: var(--spacing-sm) var(--spacing-lg);
+
+    border: 1px solid var(--border-primary-color);
+    border-radius: var(--border-radius-md);
+
+    background-color: var(--bg-active-color);
+    color: #111;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+#start-btn:hover{
+    background-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+#start-btn:active{
+    transform: translateY(0);
 }
 
 .block{
