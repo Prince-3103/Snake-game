@@ -10,17 +10,22 @@ html, body{
 }
 
 :root{
-    /* Background-colors */
+    /* Background colors */
     --bg-primary-color: #0c0c0c;
     --bg-secondary-color: #1a1a1a;
     --bg-active-color: #e3e3e3;
     --bg-filled-color: #f1f0f0;
     --bg-food-color: #ff0000;
+    --bg-snake-head-color: #00ff00;
+    --bg-game-over-color: rgba(0, 0, 0, 0.7);
+    --bg-score-color: #292929;
 
-    /* Text-colors */
+    /* Text colors */
     --text-primary-color: #f3f3f3;
+    --text-secondary-color: #aaaaaa;
+    --text-dark-color: #111111;
 
-    /* spacing variables */
+    /* Spacing */
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 16px;
@@ -29,37 +34,54 @@ html, body{
     --spacing-2xl: 40px;
     --spacing-3xl: 48px;
 
-    /* Border-colors */
+    /* Border colors */
     --border-primary-color: #333333;
-    
-    /* Border-radius */
+
+    /* Border radius */
     --border-radius-sm: 4px;
     --border-radius-md: 8px;
     --border-radius-lg: 16px;
     --border-radius-xl: 32px;
+
+    /* Font sizes */
+    --font-size-sm: 0.9rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.7rem;
+    --font-size-xl: 2.3rem;
+    --font-size-2xl: 3rem;
+
+    /* Other */
+    --game-over-card-width: 450px;
+    --slider-transition: 0.2s;
 }
 
 html{
     background-color: var(--bg-primary-color);
     color: var(--text-primary-color);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+        'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-main,section{
+main,
+section{
     width: 100%;
     height: 100%;
 }
 
 section{
     padding: var(--spacing-2xl);
+
     display: flex;
     flex-direction: column;
+
     gap: var(--spacing-lg);
-    height: 100%;
 }
 
 section .infos{
     width: 100%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -67,16 +89,27 @@ section .infos{
 
 .infos .info{
     padding: var(--spacing-sm) var(--spacing-md);
+
     border: 1px solid var(--border-primary-color);
     border-radius: var(--border-radius-md);
 }
 
 section .board{
     border: 1px solid var(--border-primary-color);
+
     flex-grow: 1;
+
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(50px, 1fr)
+    );
+
+    grid-template-rows: repeat(
+        auto-fill,
+        minmax(50px, 1fr)
+    );
 }
 
 .score-infos{
@@ -91,18 +124,18 @@ section .board{
     border-radius: var(--border-radius-md);
 
     background-color: var(--bg-active-color);
-    color: #111;
+    color: var(--text-dark-color);
 
-    font-size: 1rem;
+    font-size: var(--font-size-md);
     font-weight: 600;
 
     cursor: pointer;
 
-    transition: all 0.2s ease;
+    transition: all var(--slider-transition) ease;
 }
 
 #start-btn:hover{
-    background-color: #ffffff;
+    background-color: var(--text-primary-color);
     transform: translateY(-2px);
 }
 
@@ -111,8 +144,6 @@ section .board{
 }
 
 .block{
-    /* width: 30px;
-    height: 30px; */
     border: 1px solid var(--border-primary-color);
 }
 
@@ -120,74 +151,139 @@ section .board{
     background-color: var(--bg-filled-color);
 }
 
+.snake-head{
+    background-color: var(--bg-snake-head-color);
+}
+
+.food{
+    background-color: var(--bg-food-color);
+}
+
 .game-over{
+    display: none;
+
     position: fixed;
     inset: 0;
-    display: flex;
+
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.7);
+
+    background-color: var(--bg-game-over-color);
+
     backdrop-filter: blur(6px);
+
     z-index: 100;
-    display: none;
 }
 
 .game-over-card{
-    width: min(90%, 450px);
-    padding: 40px;
-    background-color: #1a1a1a;
-    color: white;
-    border-radius: 20px;
+    width: min(90%, var(--game-over-card-width));
+
+    padding: var(--spacing-2xl);
+
+    background-color: var(--bg-secondary-color);
+    color: var(--text-primary-color);
+
+    border-radius: var(--border-radius-lg);
+
     text-align: center;
+
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .game-over-card h1{
-    font-size: 3rem;
-    margin-bottom: 30px;
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
 }
 
 .score-container{
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 30px;
+
+    gap: var(--spacing-md);
+
+    margin-bottom: var(--spacing-lg);
 }
 
 .score{
-    padding: 20px 10px;
-    background-color: #292929;
-    border-radius: 12px;
+    padding: var(--spacing-lg) var(--spacing-sm);
+
+    background-color: var(--bg-score-color);
+
+    border-radius: var(--border-radius-md);
 }
 
 .score p{
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    color: #aaa;
+    margin-bottom: var(--spacing-sm);
+
+    font-size: var(--font-size-sm);
+
+    color: var(--text-secondary-color);
 }
 
 .score span{
     display: block;
-    font-size: 1.7rem;
+
+    font-size: var(--font-size-lg);
     font-weight: 700;
 }
 
 #restart-btn{
-    padding: 12px 25px;
+    padding: var(--spacing-sm) var(--spacing-lg);
+
     border: none;
-    border-radius: 10px;
-    background-color: #fff;
-    color: #111;
-    font-size: 1rem;
+    border-radius: var(--border-radius-md);
+
+    background-color: var(--bg-active-color);
+    color: var(--text-dark-color);
+
+    font-size: var(--font-size-md);
     font-weight: 600;
+
     cursor: pointer;
-    transition: transform 0.2s ease;
+
+    transition: transform var(--slider-transition) ease;
 }
 
 #restart-btn:hover{
     transform: scale(1.05);
 }
 
-.food{
-    background-color: var(--bg-food-color);
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 700px){
+
+    section{
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    section .infos{
+        flex-direction: column;
+
+        gap: var(--spacing-md);
+
+        align-items: stretch;
+    }
+
+    .score-infos{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #start-btn{
+        width: 100%;
+    }
+
+    .game-over-card{
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .game-over-card h1{
+        font-size: var(--font-size-xl);
+    }
+
+    .score-container{
+        grid-template-columns: 1fr;
+    }
 }
