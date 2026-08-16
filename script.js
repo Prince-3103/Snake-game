@@ -9,11 +9,19 @@ const cols = Math.floor(board.clientWidth/blockWidth);
 const gameOver = document.querySelector(".game-over");
 const startBtn = document.querySelector("#start-btn")
 const restartBtn = document.querySelector("#restart-btn");
+
 const scoreCounter = document.querySelector("#score");
+const highScoreElement = document.querySelector("#high-score");
+const timeElement = document.querySelector("#timer")
 
 let intervalId = null;
 let food = {x: Math.floor(Math.random()*rows), y: Math.floor(Math.random()*cols)};
-let count = 0;
+
+let highScore = localStorage.getItem("highScore") || 0;
+let score = 0;
+let timer = "00-00"
+
+highScoreElement.textContent = highScore;
 
 let snake = [
     {x: 1, y:3},
@@ -69,16 +77,20 @@ function render(){
         blocks[`${food.x}-${food.y}`].classList.remove("food");
         food = {x: Math.floor(Math.random()*rows), y: Math.floor(Math.random()*cols)};
 
-        count++;
+        score += 10;
         blocks[`${food.x}-${food.y}`].classList.add("food");
 
+        if(highScore < score){
+            highScore = score;
+            localStorage.setItem("highScore", JSON.parse(highScore));
+        }
         snake.unshift(head)
     }
-    scoreCounter.textContent = count;
+    scoreCounter.textContent = score;
 }
 
 function startGame(){
-    count = 0;
+    score = 0;
     intervalId = setInterval(() =>{
         render()
     },300)
@@ -112,5 +124,7 @@ restartBtn.addEventListener("click", ()=>{
 
     gameOver.style.display = "none";
     clearInterval(intervalId);
+
+    highScoreElement.textContent = highScore;
 
 })
