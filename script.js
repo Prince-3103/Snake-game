@@ -144,7 +144,7 @@ function startGame(){
     score = 0;
     intervalId = setInterval(() =>{
         render()
-    },300);
+    },200);
     timeIntervalId = setInterval(() => {
         let [min, sec] = timer.split(":").map(Number);
 

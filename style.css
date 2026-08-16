@@ -149,14 +149,17 @@ section .board{
 
 .filled{
     background-color: var(--bg-filled-color);
+    border-radius: var(--border-radius-sm);
 }
 
 .snake-head{
     background-color: var(--bg-snake-head-color);
+    border-radius: var(--border-radius-sm);
 }
 
 .food{
     background-color: var(--bg-food-color);
+    border-radius: var(--border-radius-sm);
 }
 
 .game-over{
